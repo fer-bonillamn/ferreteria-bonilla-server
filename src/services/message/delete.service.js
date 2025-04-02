@@ -2,7 +2,9 @@ import { Message } from '../../database/database.js'
 
 const deleteMessage = async (id) => {
   const messageDeleted = await Message.destroy({ where: { id } })
-  return { code: 200, messageDeleted }
+  return messageDeleted
+    ? { code: 200, message: 'Mensaje eliminado' }
+    : { code: 404, message: 'Mensaje no encontrado' }
 }
 
 const deleteConversation = async (SenderId, ReceiverId) => {
@@ -12,7 +14,10 @@ const deleteConversation = async (SenderId, ReceiverId) => {
       ReceiverId,
     },
   })
-  return { code: 200, messageDeleted }
+
+  return messageDeleted
+    ? { code: 200, message: 'Conversacion eliminada' }
+    : { code: 404, message: 'Conversacion no encontrada' }
 }
 
 export { deleteMessage, deleteConversation }
