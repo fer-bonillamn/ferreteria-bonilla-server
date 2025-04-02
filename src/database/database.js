@@ -89,7 +89,6 @@ export {
   Position,
   User,
   Branch,
-  Position,
   Code,
   Employee,
   Interest,

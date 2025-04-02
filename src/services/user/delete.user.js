@@ -1,6 +1,6 @@
 import { User } from '../../database/database.js'
 
-export const deleteUser = async (id) => {
+const deleteUser = async (id) => {
   const user = await User.findOne({
     where: {
       id,

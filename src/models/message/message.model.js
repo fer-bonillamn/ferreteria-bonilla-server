@@ -33,6 +33,11 @@ const MessageModel = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
       senderAt: {
         type: DataTypes.DATE,
         allowNull: false,
