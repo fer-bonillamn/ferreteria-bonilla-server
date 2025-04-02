@@ -10,8 +10,8 @@ const {
 } = process.env
 
 export {
-  PORT,
   LOCAL_DATABASE_URI,
+  PORT,
   SECRET_WORD,
   CLOUDINARY_API_KEY,
   CLOUDINARY_NAME,
