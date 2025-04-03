@@ -5,6 +5,7 @@ import employeeService from './employee/index.service.js'
 import jobOfferService from './job-offer/index.service.js'
 import interestService from './interest/index.service.js'
 import messageService from './message/index.service.js'
+import notificationService from './notification/index.service.js'
 import userService from './user/index.service.js'
 
 export {
@@ -15,5 +16,6 @@ export {
   jobOfferService,
   interestService,
   messageService,
+  notificationService,
   userService,
 }
