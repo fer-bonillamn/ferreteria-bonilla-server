@@ -26,11 +26,11 @@ const UserExperienceModel = (sequelize) => {
         allowNull: false, // Nombre de la empresa
       },
       startDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false, // Fecha de inicio en ese puesto
       },
       endDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: true, // Fecha de fin en ese puesto (opcional, puede estar en null si es actual)
       },
       isCurrentJob: {

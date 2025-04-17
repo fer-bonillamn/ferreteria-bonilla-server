@@ -1,13 +1,21 @@
 import { Resume } from '../../database/database.js'
 
-const deleteResume = async (id) => {
-  const resume = await Resume.destroy({
+const deleteResume = async (UserId) => {
+  const resume = await Resume.findOne({
     where: {
-      id,
+      UserId,
     },
   })
-  return resume
-    ? { code: 200, message: 'Curriculum Vitae eliminado' }
+
+  if (!resume) return { code: 404, message: 'Curriculum Vitae no encontrado' }
+  const { publicId } = resume
+  const resumeDeleted = await Resume.destroy({
+    where: {
+      UserId,
+    },
+  })
+  return resumeDeleted
+    ? { code: 200, message: 'Curriculum Vitae eliminado', publicId }
     : { code: 404, message: 'Curriculum Vitae no encontrado' }
 }
 

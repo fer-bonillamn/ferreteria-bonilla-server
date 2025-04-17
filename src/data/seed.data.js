@@ -1,3 +1,5 @@
+import { ADMIN_PASSWORD } from '../config/config.js'
+
 export const positions = [
   'Asistente contable',
   'Asistente de Bodega',
@@ -217,3 +219,17 @@ export const cities = [
   'Zapotillo',
   'Zaruma',
 ]
+
+export const userAdmin = {
+  fullName: 'Admin User',
+  dni: '1234567890',
+  phone: '1234567890',
+  email: 'admin@gmail.com',
+  password: ADMIN_PASSWORD,
+  role: 'Administrador',
+  address: 'Calle 123, Ciudad',
+  city: 'Ciudad',
+  province: 'Provincia',
+  country: 'Pais',
+  isVerified: true,
+}

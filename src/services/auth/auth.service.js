@@ -27,7 +27,7 @@ const loginWithCredentials = async (email, password) => {
   if (!user.isVerified)
     return { code: 401, message: 'Acceso denegado. Cuenta no verificada.' }
 
-  const { password: hashed, ...userData } = user
+  const { password: hashed, ...userData } = user.dataValues
 
   const isValid = bcryptUtil.comparePassword(password, hashed)
   if (!isValid)

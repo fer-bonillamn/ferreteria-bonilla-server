@@ -19,6 +19,12 @@ const ResumeModel = (sequelize) => {
         },
       },
 
+      publicId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+
       UserId: {
         type: DataTypes.UUID,
         allowNull: false,

@@ -16,7 +16,7 @@ const registerUser = async (data) => {
   const newUser = await User.create(data)
 
   return newUser
-    ? { code: 201, message: 'Usuario registrado' }
+    ? { code: 201, message: 'Usuario registrado', user: newUser }
     : { code: 400, message: 'Usuario no registrado. Intente de nuevo.' }
 }
 
@@ -27,7 +27,7 @@ const registerUserWithGoogle = async (data) => {
 
   const newUser = await User.create(data)
   return newUser
-    ? { code: 201, message: 'Usuario registrado' }
+    ? { code: 201, message: 'Usuario registrado', user: newUser.dataValues }
     : { code: 400, message: 'Usuario no registrado. Intente de nuevo.' }
 }
 

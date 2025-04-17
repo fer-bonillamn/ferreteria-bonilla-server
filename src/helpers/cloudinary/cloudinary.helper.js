@@ -1,5 +1,17 @@
 import { v2 as cloudinary } from 'cloudinary'
 import stream from 'stream'
+import {
+  CLOUDINARY_API_SECRET,
+  CLOUDINARY_KEY,
+  CLOUDINARY_NAME,
+} from '../../config/config.js'
+
+cloudinary.config({
+  cloud_name: CLOUDINARY_NAME,
+  api_key: CLOUDINARY_KEY,
+  api_secret: CLOUDINARY_API_SECRET,
+  secure: true,
+})
 
 const uploadFile = async (folder, fileBuffer, fileName) => {
   // Creamos un stream de lectura a partir del buffer
@@ -48,7 +60,7 @@ const uploadPdf = async (folder, fileBuffer, fileName) => {
             new Error('Error uploading PDF to Cloudinary: ' + error.message)
           )
         } else {
-          resolve(result.secure_url) // URL segura del archivo subido
+          resolve(result) // URL segura del archivo subido
         }
       }
     )
@@ -57,4 +69,20 @@ const uploadPdf = async (folder, fileBuffer, fileName) => {
   })
 }
 
-export default { uploadFile, uploadPdf }
+const deletePdf = async (publicId) => {
+  cloudinary.uploader
+    .destroy(publicId, { resource_type: 'raw' })
+    .then((res) => {
+      return {
+        code: 200,
+        message: 'Documento eliminado',
+      }
+    })
+    .catch((err) => {
+      return {
+        code: 400,
+        message: 'Error al eliminar el documento',
+      }
+    })
+}
+export default { uploadFile, uploadPdf, deletePdf }

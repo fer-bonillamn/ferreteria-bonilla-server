@@ -1,3 +1,4 @@
+import { Op } from 'sequelize'
 import { Message, User } from '../../database/database.js'
 
 const getAll = async () => {
@@ -7,7 +8,7 @@ const getAll = async () => {
 const getAllBySender = async (SenderId) => {
   const conversations = await Message.findAll({
     where: {
-      SenderId,
+      [Op.or]: [{ SenderId }, { ReceiverId: SenderId }],
     },
   })
 

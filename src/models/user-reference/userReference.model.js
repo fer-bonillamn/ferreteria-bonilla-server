@@ -35,6 +35,10 @@ const UserReferenceModel = (sequelize) => {
           isEmail: true,
         },
       },
+      relationship: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   )

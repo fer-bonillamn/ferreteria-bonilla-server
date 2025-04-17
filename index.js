@@ -6,7 +6,7 @@ import { loadData } from './src/scripts/seeds.scripts.js'
 sequelize
   .sync({
     logging: false,
-    force: true,
+    force: false,
     alter: true,
   })
   .then(() => {

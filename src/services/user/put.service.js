@@ -7,12 +7,23 @@ const updateUser = async (id, data) => {
     },
   })
   if (!user) return { code: 404, message: 'Usuario no encontrado.' }
-  await User.update(data, {
+  const [rows] = await User.update(data, {
     where: {
       id,
     },
   })
-  return { code: 200, message: 'Usuario actualizado correctamente.' }
+
+  if (rows > 0) {
+    const userUpdated = await User.findByPk(id)
+    const { password, ...infoUser } = userUpdated
+    return {
+      code: 200,
+      message: 'Usuario actualizado correctamente.',
+      user: infoUser.dataValues,
+    }
+  }
+
+  return { code: 404, message: 'Error al actualizar el usuario' }
 }
 
 export { updateUser }

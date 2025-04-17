@@ -17,7 +17,7 @@ const CodeModel = (sequelize) => {
       },
 
       type: {
-        type: DataTypes.ENUM('activation', 'recovery'),
+        type: DataTypes.ENUM('Activación', 'Recuperación'),
         allowNull: false,
       },
 

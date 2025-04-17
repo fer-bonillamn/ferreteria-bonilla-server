@@ -36,7 +36,7 @@ const UserModel = (sequelize) => {
         type: DataTypes.STRING,
         validate: {
           len: {
-            args: [6, 50],
+            args: [6, 100],
             msg: 'Debe tener entre 6 y 50 caracteres.',
           },
         },
@@ -52,6 +52,7 @@ const UserModel = (sequelize) => {
 
       gender: {
         type: DataTypes.ENUM,
+        allowNull: true,
         values: ['Femenino', 'Masculino', 'Otro'],
       },
 

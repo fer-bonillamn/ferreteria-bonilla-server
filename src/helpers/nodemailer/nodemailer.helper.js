@@ -13,7 +13,7 @@ const generatePathName = (fileName) => {
 const send = (to, file, subject) => {
   const transporter = nodemailer.createTransport(NODEMAILER_CONFIG)
   transporter.sendMail({
-    from: 'crisrodam1996@gmail.com',
+    from: 'ferreteriabonilla.lamana@gmail.com',
     to,
     subject,
     html: file,
@@ -29,13 +29,10 @@ const welcome = (to, name) => {
   send(to, file, 'Worknet - Bienvenido')
 }
 
-const confirmActivation = (to, name) => {
-  const pathname = generatePathName('confirm-activation')
-  const file = fs
-    .readFileSync(pathname, { encoding: 'utf-8' })
-    .toString()
-    .replace('${name}', name)
-  send(to, file, 'Worknet - Cuenta Activada')
+const confirmActivation = (to) => {
+  const pathname = generatePathName('confirm')
+  const file = fs.readFileSync(pathname, { encoding: 'utf-8' }).toString()
+  send(to, file, 'Cuenta Activada')
 }
 
 const rejectPostulation = (to, name, job_title) => {
@@ -70,7 +67,7 @@ const recuperarContraseña = (to, cliente, codigo) => {
 }
 
 const activarCuenta = (to, code) => {
-  const pathname = generatePathName('activation-account')
+  const pathname = generatePathName('activation')
   const file = fs
     .readFileSync(pathname, { encoding: 'utf-8' })
     .toString()
