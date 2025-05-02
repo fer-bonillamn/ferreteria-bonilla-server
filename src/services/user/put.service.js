@@ -26,4 +26,5 @@ const updateUser = async (id, data) => {
   return { code: 404, message: 'Error al actualizar el usuario' }
 }
 
+
 export { updateUser }

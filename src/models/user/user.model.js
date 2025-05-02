@@ -73,6 +73,11 @@ const UserModel = (sequelize) => {
         defaultValue: false,
       },
 
+      isDataValidated: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+
       sub: {
         type: DataTypes.STRING,
       },

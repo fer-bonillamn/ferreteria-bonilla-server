@@ -44,15 +44,6 @@ const BranchModel = (sequelize) => {
         unique: true,
       },
 
-      latitude: {
-        type: DataTypes.DECIMAL(10, 6),
-        allowNull: false,
-      },
-      longitude: {
-        type: DataTypes.DECIMAL(10, 6),
-        allowNull: false,
-      },
-
       isMain: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,

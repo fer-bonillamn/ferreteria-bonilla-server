@@ -11,10 +11,24 @@ const existByKey = async (key, value) => {
 }
 
 const createBranch = async (data) => {
-  const { phone, email } = data
+  const { phone, email, isMain } = data
 
   const existByPhone = await existByKey('phone', phone)
   const existByEmail = await existByKey('email', email)
+
+  if (isMain) {
+    const branchMainExists = await Branch.findOne({
+      where: {
+        isMain: true,
+      },
+    })
+
+    if (branchMainExists)
+      return {
+        code: 400,
+        message: 'Error al crear. Ya existe una sucursal principal',
+      }
+  }
 
   if (existByPhone)
     return {

@@ -1,8 +1,33 @@
 import { Router } from 'express'
-import { jobOfferService } from '../../services/index.services.js'
+import jwtMiddleware from '../../middlewares/jwt/jwt.middleware.js'
+import { jobOfferController } from '../../controllers/index.controllers.js'
 
 const jobOfferRouter = Router()
 
-jobOfferRouter.get('/', jobOfferService.getAll)
+jobOfferRouter.post(
+  '/',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAvailable,
+  jobOfferController.createJobOffer
+)
+jobOfferRouter.get('/', jwtMiddleware.validateJWT, jobOfferController.getAll)
+jobOfferRouter.get(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  jobOfferController.getById
+)
+
+jobOfferRouter.delete(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAdmin,
+  jobOfferController.deleteJobOffer
+)
+
+jobOfferRouter.get(
+  '/branch/:id',
+  jwtMiddleware.validateJWT,
+  jobOfferController.getByBranchId
+)
 
 export default jobOfferRouter

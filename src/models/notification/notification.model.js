@@ -39,6 +39,11 @@ const NotificationModel = (sequelize) => {
         values: ['Branch', 'Offer', 'Account'],
       },
 
+      relationId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       isRead: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,

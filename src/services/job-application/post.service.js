@@ -46,7 +46,7 @@ const createJobApplication = async (data) => {
 
   const newJobApplication = await JobApplication.create(data)
   return newJobApplication
-    ? { code: 201, message: 'Aplicación de trabajo creada' }
+    ? { code: 201, message: 'Postulación creada' }
     : { code: 400, message: 'Error al crear la aplicación de trabajo' }
 }
 

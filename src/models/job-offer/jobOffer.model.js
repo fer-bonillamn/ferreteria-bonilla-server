@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize'
+import { positions } from '../../data/seed.data.js'
 
 const JobOfferModel = (sequelize) => {
   sequelize.define(
@@ -15,6 +16,12 @@ const JobOfferModel = (sequelize) => {
         allowNull: false, // Título de la oferta laboral
       },
 
+      charge: {
+        type: DataTypes.ENUM,
+        values: positions,
+        allowNull: false,
+      },
+
       description: {
         type: DataTypes.TEXT,
         allowNull: false, // Descripción de la oferta laboral
@@ -25,9 +32,16 @@ const JobOfferModel = (sequelize) => {
         allowNull: true, // Requisitos específicos para el trabajo
       },
 
-      location: {
-        type: DataTypes.STRING,
-        allowNull: true, // Ubicación del trabajo (si es relevante)
+      type: {
+        type: DataTypes.ENUM,
+        values: ['Remoto', 'Presencial', 'Hibrido'],
+        allowNull: false,
+      },
+
+      contractType: {
+        type: DataTypes.ENUM,
+        values: ['Tiempo completo', 'Tiempo parcial', 'Contrato'],
+        allowNull: false,
       },
 
       salary: {

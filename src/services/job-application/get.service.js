@@ -1,7 +1,24 @@
-import { JobApplication } from '../../database/database.js'
+import {
+  Branch,
+  JobApplication,
+  JobOffer,
+  Resume,
+  User,
+} from '../../database/database.js'
 
 const getJobApplications = async () => {
-  const jobApplications = await JobApplication.findAll()
+  const jobApplications = await JobApplication.findAll({
+    include: [
+      {
+        model: JobOffer,
+        include: [Branch],
+      },
+      {
+        model: User,
+        include: [Resume],
+      },
+    ],
+  })
   return { code: 200, jobApplications }
 }
 

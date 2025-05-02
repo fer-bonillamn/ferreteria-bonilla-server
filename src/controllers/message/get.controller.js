@@ -27,7 +27,7 @@ const getAllBySender = async (req, res) => {
 
 const getConversation = async (req, res) => {
   try {
-    const { SenderId, ReceiverId } = req.params
+    const { SenderId, ReceiverId } = req.query
     const { code, conversations } = await messageService.getConversation(
       SenderId,
       ReceiverId

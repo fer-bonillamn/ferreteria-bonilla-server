@@ -1,6 +1,8 @@
+import aboutController from './about/index.controller.js'
 import authController from './auth/auth.controller.js'
 import branchController from './branch/index.controller.js'
 import codeController from './code/index.controller.js'
+import employeeController from './employees/index.controllers.js'
 import interestController from './interest/index.controller.js'
 import jobOfferController from './job-offers/index.controller.js'
 import jobApplicationController from './job-applications/index.controller.js'
@@ -15,9 +17,11 @@ import userLanguageController from './user-language/index.controller.js'
 import userReferenceController from './user-reference/index.controller.js'
 
 export {
+  aboutController,
   authController,
   branchController,
   codeController,
+  employeeController,
   interestController,
   jobOfferController,
   jobApplicationController,

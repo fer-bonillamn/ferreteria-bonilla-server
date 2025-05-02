@@ -1,4 +1,4 @@
-import { Notification } from '../../database/database.js'
+import { Branch, Notification } from '../../database/database.js'
 
 const getNotificationByUser = async (UserId) => {
   const notifications = await Notification.findAll({
@@ -8,6 +8,7 @@ const getNotificationByUser = async (UserId) => {
     order: [
       ['createdAt', 'DESC'], // Ordena las notificaciones de forma descendente por la fecha de creación
     ],
+    include: [Branch],
   })
 
   return {

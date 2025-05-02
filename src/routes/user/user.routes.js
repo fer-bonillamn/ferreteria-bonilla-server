@@ -1,8 +1,11 @@
 import { Router } from 'express'
 import { userController } from '../../controllers/index.controllers.js'
 import { multerHelper } from '../../helpers/index.helpers.js'
+import jwtMiddleware from '../../middlewares/jwt/jwt.middleware.js'
 
 const userRouter = Router()
+
+userRouter.get('/:id', userController.getById)
 
 userRouter.post('/register', userController.registerUser)
 userRouter.post('/register/with-google', userController.registerUserWithGoogle)
@@ -23,6 +26,28 @@ userRouter.put(
   '/update/without-image/:id',
   multerHelper.upload.none(),
   userController.updateUserWithoutImage
+)
+
+// Admin routes
+userRouter.get(
+  '/all/users',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAdmin,
+  userController.getAllUsers
+)
+
+userRouter.put(
+  '/validate-account/:id',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAdmin,
+  userController.updateValidation
+)
+
+userRouter.delete(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAdmin,
+  userController.deleteUser
 )
 
 export default userRouter

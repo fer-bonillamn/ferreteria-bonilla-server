@@ -1,13 +1,17 @@
 import { ADMIN_PASSWORD } from '../config/config.js'
+import { Branch } from '../database/database.js'
 
 export const positions = [
   'Asistente contable',
   'Asistente de Bodega',
+  'Administrador',
   'Atención al Cliente',
   'Bodeguero',
   'Cajero',
   'Chófer',
   'Contador',
+  'Gerente',
+  'Reclutador',
   'Jefe de Bodega',
   'Jefe de Recursos Humanos',
   'Mensajero',
@@ -220,16 +224,92 @@ export const cities = [
   'Zaruma',
 ]
 
-export const userAdmin = {
-  fullName: 'Admin User',
-  dni: '1234567890',
-  phone: '1234567890',
-  email: 'admin@gmail.com',
-  password: ADMIN_PASSWORD,
-  role: 'Administrador',
+export const userList = [
+  {
+    fullName: 'Admin User',
+    dni: '1234567890',
+    phone: '1234567890',
+    email: 'admin@gmail.com',
+    password: ADMIN_PASSWORD,
+    role: 'Administrador',
+    address: 'Calle 123, Ciudad',
+    city: 'Ciudad',
+    province: 'Provincia',
+    country: 'Pais',
+    isVerified: true,
+  },
+
+  {
+    fullName: 'Delete User',
+    dni: '0000000000',
+    phone: '1111111111',
+    email: 'delete@gmail.com',
+    password: ADMIN_PASSWORD,
+    role: 'Candidato',
+    address: 'Calle 123, Ciudad',
+    city: 'Ciudad',
+    province: 'Provincia',
+    country: 'Pais',
+    isVerified: true,
+  },
+
+  {
+    fullName: 'Employee User',
+    dni: '2222222222',
+    phone: '3333333333',
+    email: 'employee@gmail.com',
+    password: ADMIN_PASSWORD,
+    role: 'Empleado',
+    address: 'Calle 123, Ciudad',
+    city: 'Ciudad',
+    province: 'Provincia',
+    country: 'Pais',
+    isVerified: true,
+  },
+]
+
+export const mainBranch = {
+  name: 'Main Branch',
+  province: 'Guayas',
+  city: 'Guayaquil',
   address: 'Calle 123, Ciudad',
-  city: 'Ciudad',
-  province: 'Provincia',
-  country: 'Pais',
-  isVerified: true,
+  phone: '1234567890',
+  email: 'mainbranch@gmail.com',
+  isMain: true,
+}
+
+export const jobOfferList = [
+  {
+    title: 'Job Offer 1',
+    charge: 'Atención al Cliente',
+    description: 'Description 1',
+    requirements: 'Requirements 1',
+    salary: '1000',
+    type: 'Remoto',
+    contractType: 'Tiempo completo',
+  },
+  {
+    title: 'Job Offer 2',
+    description: 'Description 2',
+    requirements: 'Requirements 2',
+    charge: 'Bodeguero',
+
+    salary: '2000',
+    type: 'Remoto',
+    contractType: 'Contrato',
+  },
+  {
+    title: 'Job Offer 3',
+    charge: 'Chófer',
+
+    description: 'Description 3',
+    requirements: 'Requirements 3',
+    salary: '3000',
+    type: 'Remoto',
+    contractType: 'Tiempo parcial',
+  },
+]
+
+export const jobApplication = {
+  coverLetter: 'Cover letter',
 }

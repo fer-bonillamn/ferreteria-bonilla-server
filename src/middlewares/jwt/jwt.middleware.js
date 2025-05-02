@@ -17,7 +17,9 @@ const validateJWT = async (req = request, res = response, next) => {
       })
 
     const user = await User.findOne({
-      where: id,
+      where: {
+        id,
+      },
     })
 
     if (!user)
@@ -57,7 +59,26 @@ const isAdmin = async (req = request, res = response, next) => {
   next()
 }
 
+const isAvailable = async (req = request, res = response, next) => {
+  if (!req.user)
+    return res.status(401).json({
+      message: 'Petición denegada. Token no encontrado.',
+    })
+
+  const { name, role } = req.user
+
+  if (role !== 'Administrador' && role !== 'Reclutador' && role !== 'Gerente') {
+    return res.status(401).json({
+      message:
+        'Petición denegada. No cuentas con los permisos para esta acción',
+    })
+  }
+
+  next()
+}
+
 export default {
   validateJWT,
   isAdmin,
+  isAvailable,
 }

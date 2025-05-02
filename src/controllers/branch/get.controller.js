@@ -11,4 +11,19 @@ const getAllBranches = async (req, res) => {
   }
 }
 
-export { getAllBranches }
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { code, branch } = await branchService.getBranchById(id)
+    res.status(code).json({ branch })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+
+
+
+export { getAllBranches, getById }

@@ -5,10 +5,18 @@ import {
   getByUserId,
   getJobApplications,
 } from './get.service.js'
+import {
+  deleteJobApplication,
+  rejectJobApplication,
+  acceptJobApplication,
+} from './delete.service.js'
 export default {
   createJobApplication,
+  deleteJobApplication,
   getById,
   getByJobOfferId,
   getByUserId,
   getJobApplications,
+  rejectJobApplication,
+  acceptJobApplication,
 }

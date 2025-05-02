@@ -1,3 +1,4 @@
+import aboutService from './about/index.service.js'
 import authService from './auth/auth.service.js'
 import branchService from './branch/index.service.js'
 import codeService from './code/index.service.js'
@@ -16,6 +17,7 @@ import userLanguageService from './user-language/index.service.js'
 import userReferenceService from './user-reference/index.service.js'
 
 export {
+  aboutService,
   authService,
   branchService,
   codeService,

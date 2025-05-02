@@ -10,6 +10,7 @@ const sequelize = new Sequelize(LOCAL_DATABASE_URI, {
 models.forEach((model) => model(sequelize))
 
 const {
+  About,
   User,
   Branch,
   Position,
@@ -29,6 +30,9 @@ const {
   UserSkill,
 } = sequelize.models
 
+User.hasOne(About, { foreignKey: 'UserId' })
+About.belongsTo(User, { foreignKey: 'UserId' })
+
 // Relaciones
 User.hasMany(Code, { foreignKey: 'UserId' })
 Code.belongsTo(User, { foreignKey: 'UserId' })
@@ -39,14 +43,14 @@ Employee.belongsTo(User, { foreignKey: 'UserId' })
 User.hasMany(Interest, { foreignKey: 'UserId' })
 Interest.belongsTo(User, { foreignKey: 'UserId' })
 
-User.hasMany(JobOffer, { foreignKey: 'UserId' })
-JobOffer.belongsTo(User, { foreignKey: 'UserId' })
-
 User.hasMany(JobApplication, { foreignKey: 'UserId' })
 JobApplication.belongsTo(User, { foreignKey: 'UserId' })
 
-User.hasMany(Message, { foreignKey: 'UserId' })
-Message.belongsTo(User, { foreignKey: 'UserId' })
+Message.belongsTo(User, { as: 'Sender', foreignKey: 'SenderId' })
+Message.belongsTo(User, { as: 'Receiver', foreignKey: 'ReceiverId' })
+
+User.hasMany(Message, { as: 'SentMessages', foreignKey: 'SenderId' })
+User.hasMany(Message, { as: 'ReceivedMessages', foreignKey: 'ReceiverId' })
 
 User.hasMany(Notification, { foreignKey: 'UserId' })
 Notification.belongsTo(User, { foreignKey: 'UserId' })
@@ -84,8 +88,12 @@ Notification.belongsTo(Branch, { foreignKey: 'BranchId' })
 Branch.hasMany(Employee, { foreignKey: 'BranchId' })
 Employee.belongsTo(Branch, { foreignKey: 'BranchId' })
 
+JobOffer.hasMany(JobApplication, { foreignKey: 'JobOfferId' })
+JobApplication.belongsTo(JobOffer, { foreignKey: 'JobOfferId' })
+
 export {
   sequelize,
+  About,
   Position,
   User,
   Branch,

@@ -14,4 +14,17 @@ const getByUser = async (req, res) => {
   }
 }
 
-export { getByUser }
+const getAll = async (req, res) => {
+  try {
+    const { code, jobApplications } =
+      await jobApplicationService.getJobApplications()
+    res.status(code).json({ jobApplications })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+export { getByUser, getAll }

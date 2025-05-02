@@ -1,5 +1,5 @@
 import { Op } from 'sequelize'
-import { Employee } from '../../database/database.js'
+import { Employee, User } from '../../database/database.js'
 
 const existEmployee = async (UserId) => {
   const employee = await Employee.findOne({
@@ -29,9 +29,22 @@ const createEmployee = async (data) => {
   if (!branch) return { code: 400, message: 'La sucursal no existe' }
 
   const newEmployee = await Employee.create(data)
-  return newEmployee
-    ? { code: 201, message: 'Empleado creado' }
-    : { code: 400, message: 'Error al crear el empleado' }
+
+  if (newEmployee) {
+    await User.update(
+      {
+        role: 'Empleado',
+      },
+      {
+        where: {
+          id: UserId,
+        },
+      }
+    )
+
+    return { code: 201, message: 'Empleado creado' }
+  }
+  return { code: 400, message: 'Error al crear el empleado' }
 }
 
 export { createEmployee }

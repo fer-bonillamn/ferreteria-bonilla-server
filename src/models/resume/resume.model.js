@@ -19,6 +19,11 @@ const ResumeModel = (sequelize) => {
         },
       },
 
+      parsedResume: {
+        type: DataTypes.JSON,
+        allowNull: false,
+      },
+
       publicId: {
         type: DataTypes.STRING,
         allowNull: false,

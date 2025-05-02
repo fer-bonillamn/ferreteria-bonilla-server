@@ -6,7 +6,12 @@ const branchExists = async (id) => {
 }
 
 const getById = async (id) => {
-  const jobOffer = await JobOffer.findByPk(id)
+  const jobOffer = await JobOffer.findOne({
+    where: {
+      id: id,
+    },
+    include: [Branch],
+  })
   if (jobOffer) {
     return { code: 200, jobOffer }
   } else {
@@ -26,7 +31,9 @@ const getByBranchId = async (id) => {
   return { code: 200, jobOffers }
 }
 const getAll = async () => {
-  const jobOffers = await JobOffer.findAll()
+  const jobOffers = await JobOffer.findAll({
+    include: [Branch],
+  })
   return { code: 200, jobOffers }
 }
 

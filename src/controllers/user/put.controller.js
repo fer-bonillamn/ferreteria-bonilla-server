@@ -43,4 +43,25 @@ const updateUserWithoutImage = async (req, res) => {
   }
 }
 
-export { updateUserWithImage, updateUserWithoutImage }
+const updateValidation = async (req, res) => {
+  try {
+    const { id } = req.params
+    const data = req.body
+    const { code, message } = await userService.updateUser(id, data)
+    if (code === 200 && data.isDataValidated) {
+      return res.status(code).json({ message: 'La cuenta ha sido validada' })
+    }
+
+    if (code === 200 && !data.isDataValidated) {
+      return res.status(code).json({ message: 'La cuenta no ha sido validada' })
+    }
+
+    res.status(code).json({ message })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+export { updateUserWithImage, updateUserWithoutImage, updateValidation }

@@ -1,7 +1,9 @@
-import { Employee } from '../../database/database.js'
+import { Branch, Employee, User } from '../../database/database.js'
 
 const getEmployees = async () => {
-  const employees = await Employee.findAll()
+  const employees = await Employee.findAll({
+    include: [Branch, User],
+  })
   return { code: 200, employees }
 }
 

@@ -13,7 +13,7 @@ const createJobOffer = async (data) => {
 
   const newJobOffer = await JobOffer.create(data)
   return newJobOffer
-    ? { code: 201, message: 'Oferta de trabajo creada' }
+    ? { code: 201, message: 'Oferta de trabajo creada', jobOffer: newJobOffer }
     : { code: 400, message: 'Error al crear la oferta de trabajo' }
 }
 

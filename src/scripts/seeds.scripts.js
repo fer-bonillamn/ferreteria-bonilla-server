@@ -1,7 +1,18 @@
-import { positions, userAdmin } from '../data/seed.data.js'
-import { Position, User } from '../database/database.js'
+import {
+  jobOfferList,
+  mainBranch,
+  positions,
+  userList,
+} from '../data/seed.data.js'
+import {
+  Branch,
+  Employee,
+  JobApplication,
+  JobOffer,
+  Position,
+  User,
+} from '../database/database.js'
 import { bcryptUtil } from '../utils/index.utils.js'
-
 const loadData = async () => {
   const positionsDB = await Position.findAll({})
 
@@ -14,19 +25,78 @@ const loadData = async () => {
   }
 
   // Load Admin User
-  const hash = await bcryptUtil.hashPassword(userAdmin.password)
+  const hash = await bcryptUtil.hashPassword(userList[0].password)
 
   const userAdminDB = await User.findOne({
     where: {
-      email: userAdmin.email,
+      email: userList[0].email,
     },
   })
 
+  const newUsers = userList.map((user) => ({
+    ...user,
+    password: hash,
+  }))
+
   if (!userAdminDB) {
-    await User.create({
-      ...userAdmin,
-      password: hash,
+    await User.bulkCreate(newUsers)
+  }
+
+  const mainBranchDB = await Branch.findOne({
+    where: {
+      isMain: true,
+    },
+  })
+
+  if (!mainBranchDB) {
+    await Branch.create(mainBranch)
+  }
+
+  const userEmployee = await User.findOne({
+    where: {
+      email: 'employee@gmail.com',
+    },
+  })
+
+  const employeeDB = await Employee.findOne({
+    where: {
+      UserId: userEmployee.dataValues.id,
+    },
+  })
+
+  const branchMain = await Branch.findOne({
+    where: {
+      isMain: true,
+    },
+  })
+
+  if (!employeeDB) {
+    await Employee.create({
+      BranchId: branchMain.dataValues.id,
+      UserId: userEmployee.dataValues.id,
+      jobTitle: 'Bodeguero',
     })
+  }
+
+  const offers = await JobOffer.findAll({})
+  if (offers.length === 0) {
+    const offersMap = jobOfferList.map((offer) => ({
+      ...offer,
+      BranchId: branchMain.dataValues.id,
+    }))
+    await JobOffer.bulkCreate(offersMap)
+  }
+
+  const applications = await JobApplication.findAll({})
+  if (applications.length === 0) {
+    const jobOffer = await JobOffer.findAll({})
+    const application = {
+      UserId: userEmployee.dataValues.id,
+      JobOfferId: jobOffer[0].dataValues.id,
+      coverLetter: 'Cover letter',
+    }
+
+    await JobApplication.create(application)
   }
 }
 

@@ -1,10 +1,11 @@
 import { Router } from 'express'
+import aboutRouter from './about/about.route.js'
 import authRouter from './auth/auth.route.js'
 import codeRouter from './code/code.route.js'
 import interestRouter from './interest/interest.route.js'
 import jobOfferRouter from './job-offer/jobOffer.route.js'
 import jobApplicationRouter from './job-application/jobApplication.route.js'
-
+import employeeRouter from './employee/employee.route.js'
 import messageRouter from './message/message.route.js'
 import notificationRouter from './notification/notification.route.js'
 import userRouter from './user/user.routes.js'
@@ -18,8 +19,10 @@ import userReferenceRouter from './user-reference/userReference.route.js'
 const rootRouter = Router()
 
 rootRouter.use('/auth', authRouter)
+rootRouter.use('/abouts', aboutRouter)
 rootRouter.use('/branches', branchRouter)
 rootRouter.use('/codes', codeRouter)
+rootRouter.use('/employees', employeeRouter)
 rootRouter.use('/interests', interestRouter)
 rootRouter.use('/job-offers', jobOfferRouter)
 rootRouter.use('/job-applications', jobApplicationRouter)

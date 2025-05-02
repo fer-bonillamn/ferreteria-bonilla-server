@@ -1,3 +1,4 @@
+import AboutModel from './about/about.model.js'
 import BranchModel from './branch/branch.model.js'
 import CodeModel from './code/code.model.js'
 import EmployeeModel from './employee/employee.model.js'
@@ -16,6 +17,7 @@ import UserReferenceModel from './user-reference/userReference.model.js'
 import UserSkillModel from './user-skill/userSkill.model.js'
 import UserModel from './user/user.model.js'
 export const models = [
+  AboutModel,
   BranchModel,
   CodeModel,
   EmployeeModel,

@@ -38,11 +38,6 @@ const JobApplicationModel = (sequelize) => {
         allowNull: true, // Carta de presentación opcional
       },
 
-      resume: {
-        type: DataTypes.STRING, // Puede ser un enlace o una ruta al archivo del currículum
-        allowNull: true,
-      },
-
       appliedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW, // Fecha de la aplicación
