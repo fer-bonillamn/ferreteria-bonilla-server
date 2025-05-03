@@ -1,5 +1,4 @@
 import { DataTypes } from 'sequelize'
-import { positions } from '../../data/seed.data.js'
 
 const EmployeeModel = (sequelize) => {
   sequelize.define(
@@ -27,12 +26,6 @@ const EmployeeModel = (sequelize) => {
           model: 'Users',
           key: 'id',
         },
-      },
-
-      jobTitle: {
-        type: DataTypes.ENUM,
-        values: positions,
-        allowNull: false, // Puesto de trabajo del empleado (ej. "Desarrollador Backend")
       },
 
       hireDate: {

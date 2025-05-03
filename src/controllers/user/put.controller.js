@@ -1,5 +1,6 @@
 import cloudinaryHelper from '../../helpers/cloudinary/cloudinary.helper.js'
 import { userService } from '../../services/index.services.js'
+import { bcryptUtil } from '../../utils/index.utils.js'
 
 const updateUserWithImage = async (req, res) => {
   try {
@@ -64,4 +65,29 @@ const updateValidation = async (req, res) => {
   }
 }
 
-export { updateUserWithImage, updateUserWithoutImage, updateValidation }
+const updatePassword = async (req, res) => {
+  try {
+    const { id } = req.params
+    const data = req.body
+
+    const { password } = data
+    console.log(password)
+    const hashPassword = await bcryptUtil.hashPassword(password)
+
+    const { code, message } = await userService.updatePassword(id, {
+      password: hashPassword,
+    })
+    res.status(code).json({ message })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+export {
+  updateUserWithImage,
+  updateUserWithoutImage,
+  updateValidation,
+  updatePassword,
+}

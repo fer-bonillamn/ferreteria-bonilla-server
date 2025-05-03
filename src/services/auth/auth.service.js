@@ -29,7 +29,7 @@ const loginWithCredentials = async (email, password) => {
 
   const { password: hashed, ...userData } = user.dataValues
 
-  const isValid = bcryptUtil.comparePassword(password, hashed)
+  const isValid = await bcryptUtil.comparePassword(password, hashed)
   if (!isValid)
     return { code: 401, message: 'Acceso denegado. Credenciales incorrectas' }
 

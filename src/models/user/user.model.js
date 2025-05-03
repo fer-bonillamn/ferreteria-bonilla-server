@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize'
+import { positions } from '../../data/seed.data.js'
 
 const UserModel = (sequelize) => {
   sequelize.define(
@@ -58,13 +59,7 @@ const UserModel = (sequelize) => {
 
       role: {
         type: DataTypes.ENUM,
-        values: [
-          'Administrador',
-          'Gerente',
-          'Empleado',
-          'Reclutador',
-          'Candidato',
-        ],
+        values: positions,
         defaultValue: 'Candidato',
       },
 

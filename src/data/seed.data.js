@@ -1,13 +1,13 @@
 import { ADMIN_PASSWORD } from '../config/config.js'
-import { Branch } from '../database/database.js'
 
 export const positions = [
+  'Administrador',
   'Asistente contable',
   'Asistente de Bodega',
-  'Administrador',
   'Atención al Cliente',
   'Bodeguero',
   'Cajero',
+  'Candidato',
   'Chófer',
   'Contador',
   'Gerente',
@@ -18,6 +18,7 @@ export const positions = [
   'Publicitario',
   'Secretario Oficinista Marketing',
   'Sistemas',
+
   'Técnico en Maquinaria Agrícola',
 ]
 
@@ -254,12 +255,12 @@ export const userList = [
   },
 
   {
-    fullName: 'Employee User',
+    fullName: 'Reclutador User',
     dni: '2222222222',
     phone: '3333333333',
-    email: 'employee@gmail.com',
+    email: 'reclutador@gmail.com',
     password: ADMIN_PASSWORD,
-    role: 'Empleado',
+    role: 'Reclutador',
     address: 'Calle 123, Ciudad',
     city: 'Ciudad',
     province: 'Provincia',

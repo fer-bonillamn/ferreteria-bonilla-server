@@ -5,6 +5,7 @@ import {
   updateUserWithImage,
   updateUserWithoutImage,
   updateValidation,
+  updatePassword,
 } from './put.controller.js'
 
 export default {
@@ -16,4 +17,5 @@ export default {
   updateUserWithImage,
   updateUserWithoutImage,
   updateValidation,
+  updatePassword,
 }

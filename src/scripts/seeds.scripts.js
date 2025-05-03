@@ -54,7 +54,7 @@ const loadData = async () => {
 
   const userEmployee = await User.findOne({
     where: {
-      email: 'employee@gmail.com',
+      email: 'reclutador@gmail.com',
     },
   })
 
@@ -74,7 +74,6 @@ const loadData = async () => {
     await Employee.create({
       BranchId: branchMain.dataValues.id,
       UserId: userEmployee.dataValues.id,
-      jobTitle: 'Bodeguero',
     })
   }
 

@@ -32,7 +32,7 @@ userRouter.put(
 userRouter.get(
   '/all/users',
   jwtMiddleware.validateJWT,
-  jwtMiddleware.isAdmin,
+  jwtMiddleware.isAvailable,
   userController.getAllUsers
 )
 
@@ -48,6 +48,12 @@ userRouter.delete(
   jwtMiddleware.validateJWT,
   jwtMiddleware.isAdmin,
   userController.deleteUser
+)
+
+userRouter.put(
+  '/update-password/:id',
+  jwtMiddleware.validateJWT,
+  userController.updatePassword
 )
 
 export default userRouter
