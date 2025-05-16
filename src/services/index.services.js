@@ -15,6 +15,8 @@ import userEducationService from './user-education/index.service.js'
 import userExperienceService from './user-experience/index.service.js'
 import userLanguageService from './user-language/index.service.js'
 import userReferenceService from './user-reference/index.service.js'
+import iaService from './ia/ia.service.js'
+import hfServices from './hf/hf.service.js'
 
 export {
   aboutService,
@@ -34,4 +36,6 @@ export {
   userExperienceService,
   userLanguageService,
   userReferenceService,
+  iaService,
+  hfServices,
 }

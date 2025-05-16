@@ -15,8 +15,11 @@ import userEducationController from './user-education/index.controller.js'
 import userExperienceController from './user-experience/index.controller.js'
 import userLanguageController from './user-language/index.controller.js'
 import userReferenceController from './user-reference/index.controller.js'
+import iaController from './ia/ia.controller.js'
+import hfControllers from './hf/hf.controller.js'
 
 export {
+  iaController,
   aboutController,
   authController,
   branchController,
@@ -34,4 +37,5 @@ export {
   userExperienceController,
   userLanguageController,
   userReferenceController,
+  hfControllers,
 }

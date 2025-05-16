@@ -14,7 +14,7 @@ const getAllBySender = async (SenderId) => {
       { model: User, as: 'Sender' },
       { model: User, as: 'Receiver' },
     ],
-    order: [['senderAt', 'ASC']], // 👈 Ordenar por fecha (más reciente primero)
+    order: [['senderAt', 'DESC']], // 👈 Ordenar por fecha (más reciente primero)
   })
 
   return { code: 200, conversations }

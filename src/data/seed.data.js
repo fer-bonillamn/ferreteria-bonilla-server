@@ -45,6 +45,7 @@ export const provinces = [
   'Santa Elena',
   'Santo Domingo de los Tsáchilas',
   'Sucumbíos',
+  'Latacunga',
   'Tungurahua',
   'Zamora Chinchipe',
 ]
@@ -239,53 +240,26 @@ export const userList = [
     country: 'Pais',
     isVerified: true,
   },
-
-  {
-    fullName: 'Delete User',
-    dni: '0000000000',
-    phone: '1111111111',
-    email: 'delete@gmail.com',
-    password: ADMIN_PASSWORD,
-    role: 'Candidato',
-    address: 'Calle 123, Ciudad',
-    city: 'Ciudad',
-    province: 'Provincia',
-    country: 'Pais',
-    isVerified: true,
-  },
-
-  {
-    fullName: 'Reclutador User',
-    dni: '2222222222',
-    phone: '3333333333',
-    email: 'reclutador@gmail.com',
-    password: ADMIN_PASSWORD,
-    role: 'Reclutador',
-    address: 'Calle 123, Ciudad',
-    city: 'Ciudad',
-    province: 'Provincia',
-    country: 'Pais',
-    isVerified: true,
-  },
 ]
 
 export const mainBranch = {
-  name: 'Main Branch',
-  province: 'Guayas',
-  city: 'Guayaquil',
-  address: 'Calle 123, Ciudad',
-  phone: '1234567890',
-  email: 'mainbranch@gmail.com',
+  name: 'Sede Principal',
+  province: 'Latacunga',
+  city: 'La Maná',
+  address: 'Av. 19 de Mayo y Velasco Ibarra',
+  phone: '09998800330',
+  email: 'ferreteria_bonilla.2014@hotmail.com',
   isMain: true,
 }
 
 export const jobOfferList = [
   {
     title: 'Job Offer 1',
-    charge: 'Atención al Cliente',
-    description: 'Description 1',
-    requirements: 'Requirements 1',
-    salary: '1000',
+    charge: 'Sistemas',
+    description:
+      'Se busca desarrollador full stack con experiencia en Node.js y bases de datos SQL, react y tailwindcss',
+    requirements: 'Node.js, PostgreSQL, Express, APIs REST.',
+    salary: '2500',
     type: 'Remoto',
     contractType: 'Tiempo completo',
   },
@@ -310,7 +284,3 @@ export const jobOfferList = [
     contractType: 'Tiempo parcial',
   },
 ]
-
-export const jobApplication = {
-  coverLetter: 'Cover letter',
-}

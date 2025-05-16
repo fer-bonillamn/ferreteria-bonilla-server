@@ -9,7 +9,11 @@ jobApplicationRouter.post(
   jwtMiddleware.validateJWT,
   jobApplicationController.applyJob
 )
-
+jobApplicationRouter.get(
+  '/postulation/:id',
+  jwtMiddleware.validateJWT,
+  jobApplicationController.getById
+)
 jobApplicationRouter.get('/user/:id', jobApplicationController.getByUser)
 jobApplicationRouter.get(
   '/all',
@@ -36,6 +40,13 @@ jobApplicationRouter.put(
   jwtMiddleware.validateJWT,
   jwtMiddleware.isAvailable,
   jobApplicationController.rejectJobApplication
+)
+
+jobApplicationRouter.put(
+  '/update-postulation/:id',
+  jwtMiddleware.validateJWT,
+  jwtMiddleware.isAvailable,
+  jobApplicationController.updatePostulation
 )
 
 export default jobApplicationRouter

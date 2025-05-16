@@ -16,6 +16,8 @@ import userEducationRouter from './user-education/userEducation.route.js'
 import userExperienceRouter from './user-experience/userExperience.route.js'
 import userLanguageRouter from './user-language/userLanguage.route.js'
 import userReferenceRouter from './user-reference/userReference.route.js'
+import iaRouter from './ia/ia.route.js'
+import hfRouter from './hf/hf.route.js'
 const rootRouter = Router()
 
 rootRouter.use('/auth', authRouter)
@@ -35,4 +37,6 @@ rootRouter.use('/user-educations', userEducationRouter)
 rootRouter.use('/user-experiences', userExperienceRouter)
 rootRouter.use('/user-languages', userLanguageRouter)
 rootRouter.use('/user-references', userReferenceRouter)
+rootRouter.use('/ia', iaRouter)
+rootRouter.use('/hf', hfRouter)
 export default rootRouter

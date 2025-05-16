@@ -1,7 +1,7 @@
 import { request, response } from 'express'
-import { authService } from '../../services/index.services.js'
-import { jwtUtil } from '../../utils/index.utils.js'
-
+import { authService, codeService } from '../../services/index.services.js'
+import { bcryptUtil, jwtUtil } from '../../utils/index.utils.js'
+import { Code, User } from '../../database/database.js'
 const loginWithGoogle = async (req = request, res = response) => {
   try {
     const { sub } = req.body
@@ -45,7 +45,45 @@ const loginWithCredentials = async (req = request, res = response) => {
   }
 }
 
+const changePassword = async (req, res) => {
+  try {
+    const { email, code, password } = req.body
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    })
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' })
+    const { code: codeCode, message: msg } = await codeService.validateCode(
+      email,
+      code
+    )
+    if (codeCode === 200) {
+      const codeFound = await Code.findOne({
+        where: {
+          UserId: user.id,
+          type: 'Recuperación',
+          code: code,
+        },
+      })
+
+      codeFound.isValid = false
+      await codeFound.save()
+      const hashedPassword = await bcryptUtil.hashPassword(password)
+      user.password = hashedPassword
+      await user.save()
+      return res.status(codeCode).json({ message: 'Contraseña actualizada' })
+    }
+    res.status(codeCode).json({ message: msg })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
 export default {
   loginWithGoogle,
   loginWithCredentials,
+  changePassword,
 }

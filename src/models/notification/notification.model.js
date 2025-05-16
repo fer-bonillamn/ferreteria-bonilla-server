@@ -21,7 +21,7 @@ const NotificationModel = (sequelize) => {
 
       BranchId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'Branches',
           key: 'id',
@@ -36,12 +36,12 @@ const NotificationModel = (sequelize) => {
       notificationType: {
         type: DataTypes.ENUM,
         allowNull: false,
-        values: ['Branch', 'Offer', 'Account'],
+        values: ['Branch', 'Offer', 'Postulation', 'Account'],
       },
 
       relationId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
 
       isRead: {

@@ -1,3 +1,4 @@
+import { Notification } from '../../database/database.js'
 import cloudinaryHelper from '../../helpers/cloudinary/cloudinary.helper.js'
 import { userService } from '../../services/index.services.js'
 import { bcryptUtil } from '../../utils/index.utils.js'
@@ -50,6 +51,13 @@ const updateValidation = async (req, res) => {
     const data = req.body
     const { code, message } = await userService.updateUser(id, data)
     if (code === 200 && data.isDataValidated) {
+      const newNotification = {
+        UserId: id,
+        message: 'Tú cuenta ha sido validada. Inicia sesión para continuar.',
+        notificationType: 'Account',
+      }
+
+      await Notification.create(newNotification)
       return res.status(code).json({ message: 'La cuenta ha sido validada' })
     }
 
@@ -59,6 +67,7 @@ const updateValidation = async (req, res) => {
 
     res.status(code).json({ message })
   } catch (error) {
+    console.log(error)
     res.status(500).json({
       message: 'Error interno en el servidor. Intente más tarde',
     })

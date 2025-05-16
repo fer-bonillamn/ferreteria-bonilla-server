@@ -5,5 +5,5 @@ const authRouter = Router()
 
 authRouter.post('/login/with-google', authController.loginWithGoogle)
 authRouter.post('/login/with-credentials', authController.loginWithCredentials)
-
+authRouter.put('/change-password', authController.changePassword)
 export default authRouter

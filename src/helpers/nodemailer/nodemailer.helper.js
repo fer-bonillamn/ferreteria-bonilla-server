@@ -76,6 +76,16 @@ const activarCuenta = (to, code) => {
   send(to, file, 'Activación de cuenta')
 }
 
+const changePassword = (to, code) => {
+  const pathname = generatePathName('recuperation')
+  const file = fs
+    .readFileSync(pathname, { encoding: 'utf-8' })
+    .toString()
+    .replace('${code}', code)
+
+  send(to, file, 'Recuperación de contraseña')
+}
+
 export default {
   activarCuenta,
   recuperarContraseña,
@@ -83,4 +93,5 @@ export default {
   confirmActivation,
   rejectPostulation,
   acceptPostulation,
+  changePassword,
 }

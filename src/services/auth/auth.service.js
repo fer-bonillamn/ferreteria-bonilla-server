@@ -36,7 +36,27 @@ const loginWithCredentials = async (email, password) => {
   return { code: 200, user: userData }
 }
 
+const changePassword = async (id, newPassword) => {
+  const user = await User.findOne({
+    where: {
+      id,
+    },
+  })
+  if (!user) return { code: 404, message: 'Usuario no encontrado.' }
+  const hashed = await bcryptUtil.hashPassword(newPassword)
+  await User.update(
+    { password: hashed },
+    {
+      where: {
+        id,
+      },
+    }
+  )
+  return { code: 200, message: 'Contraseña cambiada correctamente.' }
+}
+
 export default {
   loginWithCredentials,
   loginWithGoogle,
+  changePassword,
 }

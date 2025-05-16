@@ -11,4 +11,5 @@ const markRead = async (id) => {
   return { code: 200, message: 'Notificacion marcada como leida' }
 }
 
+
 export { markRead }

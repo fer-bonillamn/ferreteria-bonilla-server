@@ -1,5 +1,10 @@
 import { deleteJobOffer } from './delete.controller.js'
-import { getAll, getByBranchId, getById } from './get.controller.js'
+import {
+  getAll,
+  getByBranchId,
+  getById,
+  getByEmployee,
+} from './get.controller.js'
 import { createJobOffer } from './post.controller.js'
 
 export default {
@@ -8,4 +13,5 @@ export default {
   getByBranchId,
   getById,
   deleteJobOffer,
+  getByEmployee,
 }

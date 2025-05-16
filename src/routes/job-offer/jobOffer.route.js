@@ -30,4 +30,10 @@ jobOfferRouter.get(
   jobOfferController.getByBranchId
 )
 
+jobOfferRouter.get(
+  '/by-employee/:id',
+  jwtMiddleware.validateJWT,
+  jobOfferController.getByEmployee
+)
+
 export default jobOfferRouter

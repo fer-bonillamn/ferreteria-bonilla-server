@@ -1,4 +1,11 @@
-import { JobOffer, Branch } from '../../database/database.js'
+import {
+  JobOffer,
+  Branch,
+  Employee,
+  JobApplication,
+  User,
+  Resume,
+} from '../../database/database.js'
 
 const branchExists = async (id) => {
   const branch = await Branch.findByPk(id)
@@ -37,4 +44,36 @@ const getAll = async () => {
   return { code: 200, jobOffers }
 }
 
-export { getById, getByBranchId, getAll }
+const getByEmployee = async (id) => {
+  const employee = await Employee.findOne({
+    where: {
+      UserId: id,
+    },
+  })
+
+  if (!employee) return { code: 404, message: 'El empleado no existe' }
+
+  const jobOffers = await JobOffer.findAll({
+    where: {
+      BranchId: employee.BranchId,
+    },
+    include: [
+      {
+        model: JobApplication,
+        include: [
+          {
+            model: User,
+            include: [Resume],
+          },
+        ],
+      },
+      {
+        model: Branch,
+      },
+    ],
+  })
+
+  return { code: 200, jobOffers }
+}
+
+export { getById, getByBranchId, getAll, getByEmployee }

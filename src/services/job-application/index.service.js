@@ -10,6 +10,7 @@ import {
   rejectJobApplication,
   acceptJobApplication,
 } from './delete.service.js'
+import { updatePostulation } from './put.service.js'
 export default {
   createJobApplication,
   deleteJobApplication,
@@ -19,4 +20,5 @@ export default {
   getJobApplications,
   rejectJobApplication,
   acceptJobApplication,
+  updatePostulation,
 }

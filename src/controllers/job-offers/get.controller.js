@@ -35,4 +35,16 @@ const getById = async (req, res) => {
   }
 }
 
-export { getAll, getByBranchId, getById }
+const getByEmployee = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { code, jobOffers, message } = await jobOfferService.getByEmployee(id)
+    res.status(code).json(message ? { message } : { jobOffers })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+export { getAll, getByBranchId, getById, getByEmployee }

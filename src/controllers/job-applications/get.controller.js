@@ -27,4 +27,17 @@ const getAll = async (req, res) => {
   }
 }
 
-export { getByUser, getAll }
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { code, jobApplication, message } =
+      await jobApplicationService.getById(id)
+    res.status(code).json(message ? { message } : { jobApplication })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor. Intente más tarde',
+    })
+  }
+}
+
+export { getByUser, getAll, getById }

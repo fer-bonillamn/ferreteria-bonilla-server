@@ -77,7 +77,7 @@ const UserModel = (sequelize) => {
         type: DataTypes.STRING,
       },
 
-      address: {
+      residence: {
         type: DataTypes.TEXT,
       },
     },

@@ -7,7 +7,6 @@ import {
 import {
   Branch,
   Employee,
-  JobApplication,
   JobOffer,
   Position,
   User,
@@ -52,30 +51,11 @@ const loadData = async () => {
     await Branch.create(mainBranch)
   }
 
-  const userEmployee = await User.findOne({
-    where: {
-      email: 'reclutador@gmail.com',
-    },
-  })
-
-  const employeeDB = await Employee.findOne({
-    where: {
-      UserId: userEmployee.dataValues.id,
-    },
-  })
-
   const branchMain = await Branch.findOne({
     where: {
       isMain: true,
     },
   })
-
-  if (!employeeDB) {
-    await Employee.create({
-      BranchId: branchMain.dataValues.id,
-      UserId: userEmployee.dataValues.id,
-    })
-  }
 
   const offers = await JobOffer.findAll({})
   if (offers.length === 0) {
@@ -84,18 +64,6 @@ const loadData = async () => {
       BranchId: branchMain.dataValues.id,
     }))
     await JobOffer.bulkCreate(offersMap)
-  }
-
-  const applications = await JobApplication.findAll({})
-  if (applications.length === 0) {
-    const jobOffer = await JobOffer.findAll({})
-    const application = {
-      UserId: userEmployee.dataValues.id,
-      JobOfferId: jobOffer[0].dataValues.id,
-      coverLetter: 'Cover letter',
-    }
-
-    await JobApplication.create(application)
   }
 }
 

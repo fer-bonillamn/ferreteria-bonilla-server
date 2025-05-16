@@ -38,6 +38,11 @@ const JobApplicationModel = (sequelize) => {
         allowNull: true, // Carta de presentación opcional
       },
 
+      observations: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+
       appliedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW, // Fecha de la aplicación
